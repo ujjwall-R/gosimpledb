@@ -159,7 +159,7 @@ func (d *Driver) Delete(collection, resource string) error {
 		return os.RemoveAll(dir)
 
 	case fi.Mode().IsRegular():
-		return os.RemoveAll(dir)
+		return os.RemoveAll(dir + ".json")
 	}
 
 	return nil
@@ -243,11 +243,11 @@ func main() {
 	}
 	fmt.Println(allusers)
 
-	// if err := db.Delete("user", "john"); err != nil {
-	// 	fmt.Println("Error", err)
-	// }
+	if err := db.Delete("users", "John"); err != nil {
+		fmt.Println("Error", err)
+	}
 
-	// if err := db.Delete("user", ""); err != nil {
-	// 	fmt.Println("Error", err)
-	// }
+	if err := db.Delete("users", ""); err != nil {
+		fmt.Println("Error", err)
+	}
 }
